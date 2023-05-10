@@ -1,15 +1,14 @@
-import { Voucher } from 'src/voucher/voucher.entity';
 import {
   Table,
   Column,
   Model,
   PrimaryKey,
-  Unique,
   HasMany,
 } from 'sequelize-typescript';
+import { Voucher } from 'src/voucher/voucher.entity';
 
 @Table({})
-export class Customer extends Model<Customer> {
+export class Offer extends Model<Offer> {
   @PrimaryKey
   @Column
   id: number;
@@ -17,12 +16,11 @@ export class Customer extends Model<Customer> {
   @Column
   name: string;
 
-  @Unique
   @Column
-  email: string;
+  percentage: number;
 
   @HasMany(() => Voucher, {
-    foreignKey: 'customer',
+    foreignKey: 'offer',
   })
   vouchers?: Voucher[];
 }
