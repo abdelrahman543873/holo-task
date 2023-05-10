@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  holo-task:
+    image: holo-task
+    build: .
+    env_file: .env
+    restart: always
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: database
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
