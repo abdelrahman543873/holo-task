@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { VoucherRepository } from './voucher.repository';
 import { RedeemVoucherDto } from './dtos/redeem-voucher.dto';
+import { voucherFactory } from '../../test/voucher/voucher.factory';
 
 @Injectable()
 export class VoucherService {
@@ -12,5 +13,10 @@ export class VoucherService {
       redeemVoucherDto.code,
     );
     return voucherOffer.offer.percentage;
+  }
+
+  async generateVoucher() {
+    const voucher = await voucherFactory();
+    return await this.voucherRepository.getVoucherDetails(voucher.code);
   }
 }

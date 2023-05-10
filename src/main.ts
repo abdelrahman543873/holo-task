@@ -3,6 +3,10 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { useContainer } from 'class-validator';
+import { repositoriesInstances } from './shared/repositories.shared';
+import { CustomerRepository } from './customer/customer.repository';
+import { OfferRepository } from './offer/offer.repository';
+import { VoucherRepository } from './voucher/voucher.repository';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -24,6 +28,9 @@ async function bootstrap() {
       validateCustomDecorators: true,
     }),
   );
+  repositoriesInstances.customerRepository = app.get(CustomerRepository);
+  repositoriesInstances.offerRepository = app.get(OfferRepository);
+  repositoriesInstances.voucherRepository = app.get(VoucherRepository);
   await app.listen(3000);
 }
 bootstrap();

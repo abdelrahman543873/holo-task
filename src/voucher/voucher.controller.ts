@@ -1,4 +1,4 @@
-import { Body, Controller, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Patch } from '@nestjs/common';
 import { RedeemVoucherDto } from './dtos/redeem-voucher.dto';
 import { VoucherService } from './voucher.service';
 
@@ -8,5 +8,10 @@ export class VoucherController {
   @Patch('redeem')
   async redeemVoucher(@Body() redeemVoucherDto: RedeemVoucherDto) {
     return await this.voucherService.redeemVoucher(redeemVoucherDto);
+  }
+
+  @Get('generate')
+  async generateVoucher() {
+    return await this.voucherService.generateVoucher();
   }
 }

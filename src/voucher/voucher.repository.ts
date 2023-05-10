@@ -39,4 +39,11 @@ export class VoucherRepository extends BaseRepository<Voucher> {
       nest: true,
     });
   }
+
+  getVoucherDetails(code) {
+    return this.voucher.findOne({
+      where: { code },
+      include: [{ model: Customer }, { model: Offer }],
+    });
+  }
 }

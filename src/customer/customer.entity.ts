@@ -9,7 +9,15 @@ import {
   AutoIncrement,
 } from 'sequelize-typescript';
 
-@Table
+@Table({
+  hooks: {
+    beforeCreate: (customer: Customer) => {
+      if (customer.email) {
+        customer.email = customer.email.toLowerCase();
+      }
+    },
+  },
+})
 export class Customer extends Model<Customer> {
   @AutoIncrement
   @PrimaryKey
@@ -20,7 +28,7 @@ export class Customer extends Model<Customer> {
   name: string;
 
   @Unique
-  @Column
+  @Column({})
   email: string;
 
   @HasMany(() => Voucher)
