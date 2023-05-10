@@ -5,8 +5,8 @@ import { Voucher } from '../../src/voucher/voucher.entity';
 import { offerFactory } from '../offer/offer.factory';
 
 interface IVoucher {
-  offer?: number;
-  customer?: number;
+  offerId?: number;
+  customerId?: number;
   expiration?: Date;
   usedAt?: Date;
 }
@@ -14,8 +14,8 @@ export const buildVoucherParams = async (
   obj: IVoucher = {},
 ): Promise<IVoucher> => {
   return {
-    offer: obj.offer || (await offerFactory()).id,
-    customer: obj.customer || (await customerFactory()).id,
+    offerId: obj.offerId || (await offerFactory()).id,
+    customerId: obj.customerId || (await customerFactory()).id,
     expiration: obj.expiration || faker.date.future(),
     usedAt: obj.usedAt || null,
   };

@@ -14,6 +14,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
       database: process.env.DB_NAME,
       autoLoadModels: true,
       synchronize: true,
+      logging: false,
     }),
   ],
   exports: [SequelizeModule],

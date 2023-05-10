@@ -7,6 +7,7 @@ import {
   ForeignKey,
   DataType,
   AllowNull,
+  BelongsTo,
 } from 'sequelize-typescript';
 import { Offer } from '../offer/offer.entity';
 import { Customer } from '../customer/customer.entity';
@@ -18,13 +19,19 @@ export class Voucher extends Model<Voucher> {
   @Column
   code: string;
 
-  @Column
-  @ForeignKey(() => Offer)
-  offer: number;
+  @BelongsTo(() => Offer)
+  offer: Offer;
 
+  @ForeignKey(() => Offer)
   @Column
+  offerId: number;
+
   @ForeignKey(() => Customer)
-  customer: number;
+  @Column
+  customerId: number;
+
+  @BelongsTo(() => Customer)
+  customer: Customer;
 
   @Column({ type: DataType.DATE })
   expiration: Date;

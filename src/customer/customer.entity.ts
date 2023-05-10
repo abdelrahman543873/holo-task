@@ -23,8 +23,6 @@ export class Customer extends Model<Customer> {
   @Column
   email: string;
 
-  @HasMany(() => Voucher, {
-    foreignKey: 'customer',
-  })
+  @HasMany(() => Voucher)
   vouchers?: Voucher[];
 }

@@ -28,6 +28,7 @@ export class CustomerRepository extends BaseRepository<Customer> {
         },
       ],
       raw: true,
+      nest: true,
     });
   }
 }

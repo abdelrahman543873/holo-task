@@ -21,8 +21,6 @@ export class Offer extends Model<Offer> {
   @Column
   percentage: number;
 
-  @HasMany(() => Voucher, {
-    foreignKey: 'offer',
-  })
+  @HasMany(() => Voucher)
   vouchers?: Voucher[];
 }
