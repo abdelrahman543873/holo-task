@@ -15,4 +15,16 @@ describe('redeem customer voucher', () => {
     });
     expect(+res.text).toBeGreaterThanOrEqual(1);
   });
+
+  it('should throw error if voucher is already used', async () => {
+    const voucher = await voucherFactory({ usedAt: new Date() });
+    const customer = await customerTestRepo().find(voucher.customerId);
+    const res = await testRequest({
+      method: HTTP_METHODS_ENUM.PATCH,
+      url: VOUCHERS,
+      variables: { email: customer.email, code: voucher.code },
+    });
+    expect(res.body.statusCode).toBe(400);
+    expect(res.body.message[0]).toContain('voucher code is invalid');
+  });
 });

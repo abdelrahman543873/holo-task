@@ -4,6 +4,7 @@ import { BaseRepository } from '../shared/abstract/repository.abstract';
 import { InjectModel } from '@nestjs/sequelize';
 import { RedeemVoucherDto } from './dtos/redeem-voucher.dto';
 import { Offer } from '../offer/offer.entity';
+import { Customer } from '../customer/customer.entity';
 
 @Injectable()
 export class VoucherRepository extends BaseRepository<Voucher> {
@@ -27,6 +28,15 @@ export class VoucherRepository extends BaseRepository<Voucher> {
       raw: true,
       nest: true,
       include: [{ model: Offer, attributes: ['percentage'] }],
+    });
+  }
+
+  validateVoucherIsValid(code: string, email: string) {
+    return this.voucher.findOne({
+      where: { code, usedAt: null },
+      include: [{ required: true, model: Customer, where: { email } }],
+      raw: true,
+      nest: true,
     });
   }
 }

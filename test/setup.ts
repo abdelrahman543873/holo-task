@@ -9,6 +9,7 @@ export default async (): Promise<void> => {
     imports: [AppModule],
   }).compile();
   const app = module.createNestApplication<NestExpressApplication>();
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
   app.enable('trust proxy');
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   app.useGlobalPipes(
