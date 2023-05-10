@@ -1,4 +1,4 @@
-import { Voucher } from 'src/voucher/voucher.entity';
+import { Voucher } from '../voucher/voucher.entity';
 import {
   Table,
   Column,
@@ -6,10 +6,12 @@ import {
   PrimaryKey,
   Unique,
   HasMany,
+  AutoIncrement,
 } from 'sequelize-typescript';
 
-@Table({})
+@Table
 export class Customer extends Model<Customer> {
+  @AutoIncrement
   @PrimaryKey
   @Column
   id: number;

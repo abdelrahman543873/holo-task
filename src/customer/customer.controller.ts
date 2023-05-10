@@ -3,7 +3,7 @@ import { CustomerService } from './customer.service';
 import { GetCustomerVouchersDto } from './dtos/get-customer-vouchers.dto';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('page')
+@ApiTags('customer')
 @Controller('customer')
 export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}

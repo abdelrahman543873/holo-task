@@ -1,4 +1,3 @@
-import { Customer } from 'src/customer/customer.entity';
 import {
   Table,
   Column,
@@ -10,6 +9,7 @@ import {
   AllowNull,
 } from 'sequelize-typescript';
 import { Offer } from '../offer/offer.entity';
+import { Customer } from '../customer/customer.entity';
 
 @Table({})
 export class Voucher extends Model<Voucher> {

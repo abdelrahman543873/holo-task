@@ -1,14 +1,16 @@
+import { Voucher } from '../voucher/voucher.entity';
 import {
   Table,
   Column,
   Model,
   PrimaryKey,
   HasMany,
+  AutoIncrement,
 } from 'sequelize-typescript';
-import { Voucher } from 'src/voucher/voucher.entity';
 
 @Table({})
 export class Offer extends Model<Offer> {
+  @AutoIncrement
   @PrimaryKey
   @Column
   id: number;
