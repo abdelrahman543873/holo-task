@@ -22,6 +22,7 @@ export const testRequest = async (
   input.method === HTTP_METHODS_ENUM.GET && (req = server.get(input.url));
   input.method === HTTP_METHODS_ENUM.PUT && (req = server.put(input.url));
   input.method === HTTP_METHODS_ENUM.DELETE && (req = server.delete(input.url));
+  input.method === HTTP_METHODS_ENUM.PATCH && (req = server.patch(input.url));
   //only way to upload a file and send object values
   input?.variables && input?.filePath
     ? Object.keys(input.variables).forEach((key) => {

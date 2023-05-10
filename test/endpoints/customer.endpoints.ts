@@ -1,1 +1,1 @@
-export const VOUCHERS = '/customer/vouchers';
+export const CUSTOMER_VOUCHERS = '/customer/vouchers';

@@ -1,6 +1,6 @@
 import { voucherFactory } from '../voucher/voucher.factory';
 import { customerTestRepo } from './customer.test-repo';
-import { VOUCHERS } from '../endpoints/customer.endpoints';
+import { CUSTOMER_VOUCHERS } from '../endpoints/customer.endpoints';
 import { HTTP_METHODS_ENUM } from '../request.methods.enum';
 import { testRequest } from '../mock-request';
 
@@ -10,7 +10,7 @@ describe('get customer vouchers', () => {
     const customer = await customerTestRepo().find(voucher.customerId);
     const res = await testRequest({
       method: HTTP_METHODS_ENUM.GET,
-      url: `${VOUCHERS}?email=${customer.email}`,
+      url: `${CUSTOMER_VOUCHERS}?email=${customer.email}`,
     });
     expect(res.body[0].vouchers.offer).toHaveProperty('name');
     expect(res.body[0].vouchers).toHaveProperty('code');
